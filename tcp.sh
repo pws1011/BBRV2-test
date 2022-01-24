@@ -1101,8 +1101,8 @@ start_menu() {
  ${Green_font_prefix}3.${Font_color_suffix} 使用BBR+FQ加速		
  ${Green_font_prefix}4.${Font_color_suffix} 使用BBR2+FQ加速	 	
  ${Green_font_prefix}5.${Font_color_suffix} 使用BBR2+FECN加速 
- # ${Green_font_prefix}6.${Font_color_suffix} 使用BBR2+CAKE加速
- ${Green_font_prefix}6.${Font_color_suffix} 开启FAECN	 		${Green_font_prefix}7.${Font_color_suffix} 关闭FAECN 
+ ${Green_font_prefix}6.${Font_color_suffix} 开启FAECN	 		
+ ${Green_font_prefix}7.${Font_color_suffix} 关闭FAECN 
  ${Green_font_prefix}8.${Font_color_suffix} 系统配置优化	 	
  ${Green_font_prefix}9.${Font_color_suffix} 卸载全部加速	 	
  ${Green_font_prefix}99.${Font_color_suffix} 退出脚本 
