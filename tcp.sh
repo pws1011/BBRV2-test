@@ -4,7 +4,6 @@ export PATH
 #=================================================
 #	System Required: CentOS 7/8,Debian/ubuntu,oraclelinux
 #	Description: BBR+BBRplus+Lotserver
-#	Version: 1.3.2.100
 #	Author: 千影,cx9208,YLX
 #	更新内容及反馈:  https://blog.ylx.me/archives/783.html
 #=================================================
@@ -138,7 +137,7 @@ installbbr() {
   #echo -e "${Tip} 内核安装完毕，请参考上面的信息检查是否安装成功及手动调整内核启动顺序"
 }
 
-#安装BBRplus内核 4.14.129
+#安装BBRplus内核
 installbbrplus() {
   kernel_version="4.14.160-bbrplus"
   bit=$(uname -m)
@@ -613,7 +612,7 @@ startbbr2fqpie() {
   echo "net.core.default_qdisc=fq_pie" >>/etc/sysctl.d/99-sysctl.conf
   echo "net.ipv4.tcp_congestion_control=bbr2" >>/etc/sysctl.d/99-sysctl.conf
   sysctl --system
-  echo -e "${Info}BBR2修改成功，重启生效！"
+  echo -e "${Info}BBR2+FQ_PIE修改成功，重启生效！"
 }
 
 #启用BBR2+CAKE
@@ -1096,22 +1095,17 @@ net.ipv6.conf.lo.disable_ipv6 = 0" >>/etc/sysctl.d/99-sysctl.conf
 #开始菜单
 start_menu() {
   clear
-  echo && echo -e " TCP加速 一键安装管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix} from blog.ylx.me 母鸡慎用
- ${Green_font_prefix}0.${Font_color_suffix} 升级脚本
- ${Green_font_prefix}9.${Font_color_suffix} 切换到不卸载内核版本	${Green_font_prefix}10.${Font_color_suffix} 切换到一键DD系统脚本
+  echo && echo -e " BBR版本实验 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
  ${Green_font_prefix}1.${Font_color_suffix} 安装 BBR原版内核
- ${Green_font_prefix}2.${Font_color_suffix} 安装 BBRplus版内核		${Green_font_prefix}5.${Font_color_suffix} 安装 BBRplus新版内核
- ${Green_font_prefix}3.${Font_color_suffix} 安装 Lotserver(锐速)内核	${Green_font_prefix}6.${Font_color_suffix} 安装 xanmod版内核
- ${Green_font_prefix}11.${Font_color_suffix} 使用BBR+FQ加速		${Green_font_prefix}12.${Font_color_suffix} 使用BBR+FQ_PIE加速 
- ${Green_font_prefix}13.${Font_color_suffix} 使用BBR+CAKE加速
- ${Green_font_prefix}14.${Font_color_suffix} 使用BBR2+FQ加速	 	${Green_font_prefix}15.${Font_color_suffix} 使用BBR2+FQ_PIE加速 
- ${Green_font_prefix}16.${Font_color_suffix} 使用BBR2+CAKE加速
- ${Green_font_prefix}17.${Font_color_suffix} 开启ECN	 		${Green_font_prefix}18.${Font_color_suffix} 关闭ECN
- ${Green_font_prefix}19.${Font_color_suffix} 使用BBRplus+FQ版加速 
- ${Green_font_prefix}20.${Font_color_suffix} 使用Lotserver(锐速)加速 
- ${Green_font_prefix}21.${Font_color_suffix} 系统配置优化	 	${Green_font_prefix}22.${Font_color_suffix} 应用johnrosen1的优化方案
- ${Green_font_prefix}23.${Font_color_suffix} 禁用IPv6	 		${Green_font_prefix}24.${Font_color_suffix} 开启IPv6  
- ${Green_font_prefix}25.${Font_color_suffix} 卸载全部加速	 	${Green_font_prefix}99.${Font_color_suffix} 退出脚本 
+ ${Green_font_prefix}2.${Font_color_suffix} 安装BBRv2内核 //xanmod
+ ${Green_font_prefix}3.${Font_color_suffix} 使用BBR+FQ加速		
+ ${Green_font_prefix}4.${Font_color_suffix} 使用BBR2+FQ加速	 	
+ ${Green_font_prefix}5.${Font_color_suffix} 使用BBR2+FECN加速 
+ # ${Green_font_prefix}6.${Font_color_suffix} 使用BBR2+CAKE加速
+ ${Green_font_prefix}6.${Font_color_suffix} 开启FAECN	 		${Green_font_prefix}7.${Font_color_suffix} 关闭FAECN 
+ ${Green_font_prefix}8.${Font_color_suffix} 系统配置优化	 	
+ ${Green_font_prefix}9.${Font_color_suffix} 卸载全部加速	 	
+ ${Green_font_prefix}99.${Font_color_suffix} 退出脚本 
 ————————————————————————————————————————————————————————————————" &&
     check_status
   get_system_info
@@ -1133,66 +1127,28 @@ start_menu() {
     check_sys_bbr
     ;;
   2)
-    check_sys_bbrplus
-    ;;
-  3)
-    check_sys_Lotsever
-    ;;
-  5)
-    check_sys_bbrplusnew
-    ;;
-  6)
     check_sys_xanmod
     ;;
-  9)
-    gototcpx
-    ;;
-  10)
-    gotodd
-    ;;
-  11)
+  3)
     startbbrfq
     ;;
-  12)
-    startbbrfqpie
-    ;;
-  13)
-    startbbrcake
-    ;;
-  14)
+  4)
     startbbr2fq
     ;;
-  15)
-    startbbr2fqpie
-    ;;
-  16)
+  5)
     startbbr2cake
     ;;
-  17)
+  6)
     startecn
     ;;
-  18)
+  7)
     closeecn
     ;;
-  19)
-    startbbrplus
-    ;;
-  20)
-    startlotserver
-    ;;
-  21)
+ 
+  8)
     optimizing_system
     ;;
-  22)
-    optimizing_system_johnrosen1
-    ;;
-  23)
-    closeipv6
-    ;;
-  24)
-    openipv6
-    ;;
-  25)
+  9)
     remove_all
     ;;
   99)
@@ -1200,7 +1156,7 @@ start_menu() {
     ;;
   *)
     clear
-    echo -e "${Error}:请输入正确数字 [0-99]"
+    echo -e "${Error}:请输入数字 [0-99]"
     sleep 5s
     start_menu
     ;;
