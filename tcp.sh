@@ -1098,9 +1098,9 @@ start_menu() {
   echo && echo -e " BBR版本实验 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
  ${Green_font_prefix}1.${Font_color_suffix} 安装 BBR原版内核
  ${Green_font_prefix}2.${Font_color_suffix} 安装BBRv2内核 //xanmod
- ${Green_font_prefix}3.${Font_color_suffix} 使用BBR+FQ加速		
- ${Green_font_prefix}4.${Font_color_suffix} 使用BBR2+FQ加速	 	
- ${Green_font_prefix}5.${Font_color_suffix} 使用BBR2+FECN加速 
+ ${Green_font_prefix}3.${Font_color_suffix} 使用BBR+FQ		
+ ${Green_font_prefix}4.${Font_color_suffix} 使用BBR2+FQ	 	
+ ${Green_font_prefix}5.${Font_color_suffix} 开启BBR2+ECN
  ${Green_font_prefix}6.${Font_color_suffix} 开启FAECN	 		
  ${Green_font_prefix}7.${Font_color_suffix} 关闭FAECN 
  ${Green_font_prefix}8.${Font_color_suffix} 系统配置优化	 	
