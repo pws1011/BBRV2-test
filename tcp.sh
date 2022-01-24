@@ -616,32 +616,32 @@ startbbr2fqpie() {
 }
 
 #启用BBR2+CAKE
-startbbr2cake() {
+startbbr2ecn() {
   remove_bbr_lotserver
   echo "net.core.default_qdisc=cake" >>/etc/sysctl.d/99-sysctl.conf
   echo "net.ipv4.tcp_congestion_control=bbr2" >>/etc/sysctl.d/99-sysctl.conf
   sysctl --system
-  echo -e "${Info}BBR2修改成功，重启生效！"
+  echo -e "${Info}BBRV2+ECN修改成功，重启生效！"
 }
 
 #开启ecn
-startecn() {
+startfaecn() {
   sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.d/99-sysctl.conf
   sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.conf
 
   echo "net.ipv4.tcp_ecn=1" >>/etc/sysctl.d/99-sysctl.conf
   sysctl --system
-  echo -e "${Info}开启ecn结束！"
+  echo -e "${Info}开启FAECN！"
 }
 
 #关闭ecn
-closeecn() {
+closefaecn() {
   sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.d/99-sysctl.conf
   sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.conf
 
   echo "net.ipv4.tcp_ecn=0" >>/etc/sysctl.d/99-sysctl.conf
   sysctl --system
-  echo -e "${Info}关闭ecn结束！"
+  echo -e "${Info}关闭FAECN结束！"
 }
 
 #卸载bbr+锐速
@@ -1136,13 +1136,13 @@ start_menu() {
     startbbr2fq
     ;;
   5)
-    startbbr2cake
+    startbbr2ecn
     ;;
   6)
-    startecn
+    startfaecn
     ;;
   7)
-    closeecn
+    closefaecn
     ;;
  
   8)
